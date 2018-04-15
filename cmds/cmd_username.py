@@ -8,14 +8,14 @@ def cmd_username(name):
     file = Path(CONFIG_FILE)
     if file.exists():
         print('acadbot: Do you want to overwrite the existing config?')
-        response = input('acadbot: [yes/no]>> ')
+        response = input('acadbot: [yes/no]> ')
         if response == 'no':
             exit()
         print('acadbot: Existing config will be overwritten...')
     print('acadbot: Writing to config file...')
 
     with open(file, 'w') as config_file:
-        config_file.write("username:" + name)
+        config_file.write("username:" + name + "\n")
     print('acadbot: Done...')
 
 
