@@ -4,7 +4,9 @@ acadbot v0.3
 '''
 
 import sys
-from cmds import *
+from cmds.cmd_version import cmd_version
+from cmds.cmd_username import cmd_username
+from cmds.cmd_passwd import cmd_passwd
 from parser import ArgParser
 VER = 'v0.3'
 ACADBOT = "acadbot"
@@ -19,12 +21,12 @@ FETCH_ARGS = [ATTENDANCE, TIME_TABLE]
 
 def validate_arg(arg):
     if arg not in COMMANDS:
-        #help_usage()
+        # help_usage()
         exit()
 
 def validate_config_arg(arg):
     if arg not in CONFIG_ARGS:
-        #help config usage
+        # help config usage
         exit()
 
 def main(args):
@@ -41,12 +43,24 @@ def main(args):
         validate_config_arg(parser.cur_arg)
         
         if parser.cur_arg == USERNAME:
-            cmd_username()
-            # set username
-            
+            parser.get_next_arg()
+            if parser.cur_arg  is not None and parser.cur_arg.isnumeric():
+                cmd_username(parser.cur_arg)
+            else:
+                # usage error
+                exit()
+                   
         elif parser.cur_arg == PASSWORD:
-            cmd_password()
+            parser.get_next_arg()
+            if parser.cur_arg is None:                
+                cmd_passwd()
+            else:
+                # usage error
+                exit()
             # set passwd
+        else:
+            # raise error
+            exit()
 
     # usage: acadbot fetch [attendace | time-table] 
     elif parser.cur_arg == FETCH:
