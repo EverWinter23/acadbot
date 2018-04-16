@@ -8,8 +8,6 @@ from cmds.cmd_version import cmd_version
 from cmds.cmd_username import cmd_username
 from cmds.cmd_passwd import cmd_passwd
 from parser import ArgParser
-VER = 'v0.3'
-ACADBOT = "acadbot"
 
 # commands
 CONFIG, FETCH, VERSION, HELP = 'config', 'fetch', '--version', '--help'
@@ -21,12 +19,14 @@ FETCH_ARGS = [ATTENDANCE, TIME_TABLE]
 
 def validate_arg(arg):
     if arg not in COMMANDS:
-        # help_usage()
+        # usage
+        # error
         exit()
 
 def validate_config_arg(arg):
-    if arg not in CONFIG_ARGS:
-        # help config usage
+    if arg not in CONFIG_ARGS: 
+        # usage
+        # error
         exit()
 
 def main(args):
@@ -36,9 +36,9 @@ def main(args):
     # usage: acadbot config --user '151301'
     # usage: acadbot config --passwd<enter>
     if parser.cur_arg == CONFIG:
-        # config can have the following two pars only
-        #   1. user.rollnum
-        #   2. user.password
+        # config can have the following two params only
+        #   1. --user 
+        #   2. --passwd
         parser.get_next_arg()
         validate_config_arg(parser.cur_arg)
         
@@ -47,7 +47,8 @@ def main(args):
             if parser.cur_arg  is not None and parser.cur_arg.isnumeric():
                 cmd_username(parser.cur_arg)
             else:
-                # usage error
+                # usage 
+                # error
                 exit()
                    
         elif parser.cur_arg == PASSWORD:
@@ -55,9 +56,9 @@ def main(args):
             if parser.cur_arg is None:                
                 cmd_passwd()
             else:
-                # usage error
+                # usage 
+                # error
                 exit()
-            # set passwd
         else:
             # raise error
             exit()
