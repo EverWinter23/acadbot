@@ -4,6 +4,7 @@ time 3:42am
 '''
 from pathlib import Path
 from getpass import getpass
+from cmds.helper import Helper
 CONFIG_FILE = 'config.txt'
 
 def cmd_passwd():
@@ -11,9 +12,7 @@ def cmd_passwd():
     if not file.exists():
         print('acadbot: Config file does not exist...')
         print('acadbot: Please run the following command first...')
-        print('')
-        print('         acadbot config --user [username]')
-        print('')
+        Helper().help_username()
         print('acadbot: Exiting...')
         exit()
     print('acadbot: Found the config file...')
