@@ -9,6 +9,7 @@ from cmds.cmd_username import cmd_username
 from cmds.cmd_passwd import cmd_passwd
 from custom_parser import ArgParser
 from cmds.helper import Helper
+from cmds.cmd_time_table import cmd_time_table
 
 # commands
 CONFIG, FETCH, VERSION, HELP = 'config', 'fetch', '--version', '--help'
@@ -19,6 +20,8 @@ COMMANDS = [CONFIG, FETCH, VERSION, HELP]
 CONFIG_ARGS = [USERNAME, PASSWORD]
 FETCH_ARGS = [ATTENDANCE, TIME_TABLE]
 
+days = ['mon','tue', 'wed', 'thu', 'fri']
+
 # print help when required
 helper = Helper()
 
@@ -26,14 +29,14 @@ def validate_arg(arg):
     if arg not in COMMANDS:
         print("acadbot: '" + arg + "' Command not found... ")
         print('acadbot: Please run from the following command list...')
-        Helper().help_command()
+        helper.help_command()
         print('acadbot: Exiting...')
         exit()
 
 def validate_config_arg(arg):
     if arg not in CONFIG_ARGS: 
         print("acadbot: '" + str(arg) +"' option not found...")
-        Helper().help_config()
+        helper.help_config()
         print('acadbot: Exiting...')
         # error
         exit()
@@ -41,7 +44,7 @@ def validate_config_arg(arg):
 def validate_fetch_arg(arg):
     if arg not in FETCH_ARGS:
         print("acadbot: '" + str(arg) +"' option not found...")
-        Helper().help_fetch()
+        helper.help_fetch()
         print('acadbot: Exiting...')
         exit()
 
@@ -94,18 +97,22 @@ def main(args):
         if parser.cur_arg == TIME_TABLE:
             parser.get_next_arg()
             batch = parser.cur_arg
-            if batch is not None and batch and len(batch) == 2 and batch[0].isaplha() and batch[0].isnumeric():
+            if batch is not None and batch and len(batch) == 2 and batch[0].isalpha() and batch[0].isupper() and batch[1].isnumeric():
                 # if day has been passed as an arg
                 parser.get_next_arg()
-                if parser.cur_arg is not None and parser.cur_arg in days:
+                if parser.cur_arg is not None and parser.cur_arg.lower() in days:
                     # TODO here
-                    cmd_time_table(batch, parser.cur_arg)
+                    day = parser.cur_arg.lower()
+                    day = day.title()
+                    cmd_time_table(batch, day)
 
                 elif parser.cur_arg is None:
                     # TODO here
                     cmd_time_table(batch)
                 else:
-                    # usage
+                    print("acadbot: '" + str(parser.cur_arg) +"' is an invalid day format...")
+                    print("acadbot: Example of day " + str(days))
+                    helper.help_time_table()
                     exit()                
             else:
                 print("acadbot: '" + str(parser.cur_arg) +"' is an invalid option...")
