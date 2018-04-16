@@ -54,13 +54,13 @@ def main(args):
     validate_arg(parser.cur_arg)
     if parser.cur_arg == CONFIG:
         # config can have the following two args only
-        #   1. --user 
+        #   1. --user
         #   2. --passwd
         parser.get_next_arg()
 
         # if no argument print usage help
         validate_config_arg(parser.cur_arg)
-        
+
         # usage: acadbot config --user '151301'
         if parser.cur_arg == USERNAME:
             parser.get_next_arg()
@@ -71,11 +71,11 @@ def main(args):
                 helper.help_username()
                 print('acadbot: Exiting...')
                 exit()
-        
-        # usage: acadbot config --passwd<enter>    
+
+        # usage: acadbot config --passwd<enter>
         elif parser.cur_arg == PASSWORD:
             parser.get_next_arg()
-            if parser.cur_arg is None:                
+            if parser.cur_arg is None:
                 cmd_passwd()
             else:
                 print("acadbot: 'Do not enter password as an argument'")
@@ -83,8 +83,8 @@ def main(args):
                 print('acadbot: Exiting...')
                 # error
                 exit()
- 
-    # usage: acadbot fetch [attendance | time-table] 
+
+    # usage: acadbot fetch [attendance | time-table]
     elif parser.cur_arg == FETCH:
         # fetch can have the following two args only
         #   1. attendance
@@ -120,17 +120,17 @@ def main(args):
                 helper.help_time_table()
                 print('acadbot: Exiting...')
                 exit()
-        
+
         # usage: acadbot fetch attendance
         elif parser.cur_arg == ATTENDANCE:
             parser.get_next_arg()
             # TODO here
-            cmd_attendance()        
+            cmd_attendance()
 
     # usage: acadbot --version
     elif parser.cur_arg == VERSION:
         cmd_version()
-    
+
     # usage: acadbot --help
     elif parser.cur_arg == HELP:
         parser.get_next_arg()
@@ -153,8 +153,6 @@ def main(args):
         else:
             helper.help_helper()
             helper.help_lists()
-          
-
 
 if __name__ == "__main__":
     user_args = sys.argv[1:]
