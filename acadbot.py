@@ -7,7 +7,7 @@ import sys
 from cmds.cmd_version import cmd_version
 from cmds.cmd_username import cmd_username
 from cmds.cmd_passwd import cmd_passwd
-from parser import ArgParser
+from custom_parser import ArgParser
 
 # commands
 CONFIG, FETCH, VERSION, HELP = 'config', 'fetch', '--version', '--help'
@@ -19,8 +19,22 @@ FETCH_ARGS = [ATTENDANCE, TIME_TABLE]
 
 def validate_arg(arg):
     if arg not in COMMANDS:
-        # usage
-        # error
+        # help
+        print('acadbot: ' + arg + ': Command not found.. ')
+        #print('')
+        print('acadbot: Please run from the following command list...')
+        print('Configure')
+        print('         acadbot config --user [username]')
+        print('         acadbot config --passwd')
+        print('')
+        print('Fetch')
+        print('         acadbot fetch time-table')
+        print('         acadbot config attendance')
+        print('')
+        print('Help')
+        print('         acadbot --help [option]')
+        print('')
+        print('acadbot: Exiting...')
         exit()
 
 def validate_config_arg(arg):
