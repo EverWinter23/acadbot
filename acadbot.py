@@ -87,7 +87,6 @@ def main(args):
         #   1. attendance
         #   2. time-table
         parser.get_next_arg()
-        raise NotImplementedError
         # if no argument print usage help
         validate_fetch_arg(parser.cur_arg)
 
