@@ -8,38 +8,30 @@ from cmds.cmd_version import cmd_version
 from cmds.cmd_username import cmd_username
 from cmds.cmd_passwd import cmd_passwd
 from custom_parser import ArgParser
+from cmds.helper import Helper
 
 # commands
 CONFIG, FETCH, VERSION, HELP = 'config', 'fetch', '--version', '--help'
 USERNAME, PASSWORD = '--user', '--passwd'
 ATTENDANCE, TIME_TABLE = 'attendance', 'time-table'
+ALL = 'all'
 COMMANDS = [CONFIG, FETCH, VERSION, HELP]
 CONFIG_ARGS = [USERNAME, PASSWORD]
 FETCH_ARGS = [ATTENDANCE, TIME_TABLE]
 
 def validate_arg(arg):
     if arg not in COMMANDS:
-        # help
-        print('acadbot: ' + arg + ': Command not found.. ')
-        #print('')
+        print("acadbot: '" + arg + "' Command not found... ")
         print('acadbot: Please run from the following command list...')
-        print('Configure')
-        print('         acadbot config --user [username]')
-        print('         acadbot config --passwd')
-        print('')
-        print('Fetch')
-        print('         acadbot fetch time-table')
-        print('         acadbot config attendance')
-        print('')
-        print('Help')
-        print('         acadbot --help [option]')
-        print('')
+        Helper().help_command()
         print('acadbot: Exiting...')
         exit()
 
 def validate_config_arg(arg):
     if arg not in CONFIG_ARGS: 
-        # usage
+        print("acadbot: config: '" + str(arg) +"' option not found...")
+        Helper().help_config()
+        print('acadbot: Exiting...')
         # error
         exit()
 
@@ -61,8 +53,9 @@ def main(args):
             if parser.cur_arg  is not None and parser.cur_arg.isnumeric():
                 cmd_username(parser.cur_arg)
             else:
-                # usage 
-                # error
+                print("acadbot: config: user: '" + str(parser.cur_arg) +"' is an invalid username...")
+                Helper().help_username()
+                print('acadbot: Exiting...')
                 exit()
                    
         elif parser.cur_arg == PASSWORD:
@@ -70,7 +63,9 @@ def main(args):
             if parser.cur_arg is None:                
                 cmd_passwd()
             else:
-                # usage 
+                print("acadbot: config: passwd: 'Do not enter password as an argument'")
+                Helper().help_password()
+                print('acadbot: Exiting...')
                 # error
                 exit()
         else:
@@ -87,7 +82,22 @@ def main(args):
     
     # usage: acadbot --help
     elif parser.cur_arg == HELP:
-        raise NotImplementedError   
+        parser.get_next_arg()
+        if parser.cur_arg == CONFIG:
+            Helper().help_config()
+        elif parser.cur_arg == FETCH:
+            Helper().help_fetch()
+        elif parser.cur_arg == HELP:
+            Helper().help_helper()
+            Helper().help_lists()
+        elif parser.cur_arg == ALL:
+            Helper().help_command()
+        elif parser.cur_arg == 'version':
+            Helper().help_version()
+        else:
+            Helper().help_helper()
+            Helper().help_lists()
+          
 
 
 if __name__ == "__main__":
