@@ -55,3 +55,8 @@ class Helper:
     def help_helper(self):
         t = ([['Usage:', 'acadbot --help [option]']])
         print(tabulate(t))
+
+    def help_time_table(self):
+        t = ([['Usage:', 'acadbot fetch time-table [batch] [day <optional>]']])
+        print(tabulate(t))
+        print('')
