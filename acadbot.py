@@ -96,18 +96,16 @@ def main(args):
         # usage: acadbot fetch time_table batch [day]
         if parser.cur_arg == TIME_TABLE:
             parser.get_next_arg()
-            batch = parser.cur_arg
-            if batch is not None and batch and len(batch) == 2 and batch[0].isalpha() and batch[0].isupper() and batch[1].isnumeric():
+            batch = parser.cur_arg.upper()
+            if batch is not None:
                 # if day has been passed as an arg
                 parser.get_next_arg()
                 if parser.cur_arg is not None and parser.cur_arg.lower() in days:
-                    # TODO here
                     day = parser.cur_arg.lower()
                     day = day.title()
                     cmd_time_table(batch, day)
 
                 elif parser.cur_arg is None:
-                    # TODO here
                     cmd_time_table(batch)
                 else:
                     print("acadbot: '" + str(parser.cur_arg) +"' is an invalid day format...")
