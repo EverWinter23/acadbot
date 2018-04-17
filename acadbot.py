@@ -96,6 +96,7 @@ def main(args):
         # usage: acadbot fetch time_table batch [day]
         if parser.cur_arg == TIME_TABLE:
             parser.get_next_arg()
+            # make it work with bot x8 and X8
             batch = parser.cur_arg.upper()
             if batch is not None:
                 # if day has been passed as an arg
