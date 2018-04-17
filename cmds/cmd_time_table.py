@@ -32,6 +32,7 @@ def cmd_time_table(batch, day=None):
         print(day)
         l = []
         for time in hrs[day_count]:
+            # TODO Remove subject and faculty code
             json_list = list(time_table[day][str(time)].values())
             json_list.insert(0, convert_time(time))
             l.append(json_list)
