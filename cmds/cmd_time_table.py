@@ -1,23 +1,19 @@
-import urllib.request, json
+'''
+17th april 2018 tuesday
+'''
+import urllib.request, json, datetime, pprint
 from tabulate import tabulate
 
-def min_time_table(time_table):
-    hrs = [time_table[day].keys() for day in ['Mon','Tue', 'Wed', 'Thu', 'Fri']]
-    day_count =0
-    for day in ['Mon','Tue', 'Wed', 'Thu', 'Fri']:
-        for time in hrs[day_count]:
-            #print(element)
-            del time_table[day][str(time)]['subjectCode']
-            del time_table[day][str(time)]['facultyCode']
-        day_count+=1
-    return time_table
-
 def url_response(batch):
-    link = "https://s3.ap-south-1.amazonaws.com/juit-webkiosk/2018EVESEM/"+str(batch) + ".json"
+    # TODO make it configurable
+    link = "https://s3.ap-south-1.amazonaws.com/juit-webkiosk/2018EVESEM/" + str(batch) + ".json"
     try:
         url = urllib.request.urlopen(link)
-    except urllib.error.HTTPError:
-        print("acadbot: The batch name '" +str(batch) + "' is an invalid batch")
+    except urllib.error.HTTPError as ex:
+        print('acadbot:', ex)
+        # TODO indicate internet/server issues
+        # TODO change the statement below to -> may be invalid or check again
+        print("acadbot: The batch name '" + str(batch) + "' is an invalid batch.")
         print('')
         print('acadbot: Exiting...')
         exit()
@@ -37,7 +33,14 @@ def cmd_time_table(batch, day=None):
         l = []
         for time in hrs[day_count]:
             json_list = list(time_table[day][str(time)].values())
-            json_list.insert(0, str(time))
+            json_list.insert(0, convert_time(time))
             l.append(json_list)
         print(tabulate(l))
         day_count+=1
+
+def convert_time(military_time):
+    if len(military_time) != 4:
+        military_time = (4 - len(military_time)) * '0' + military_time
+    military_time = military_time[0:2] + ":" + military_time[2:]
+    std_time = datetime.datetime.strptime(military_time, '%H:%M').strftime('%I:%M %p')
+    return std_time
