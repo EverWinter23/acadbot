@@ -18,7 +18,7 @@ def url_response(batch):
         print('acadbot: Exiting...')
         exit()
     data = json.loads(url.read().decode())
-    return min_time_table(data)
+    return data
 
 def cmd_time_table(batch, day=None):
     time_table = url_response(batch)
