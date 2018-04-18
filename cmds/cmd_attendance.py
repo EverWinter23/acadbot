@@ -2,13 +2,13 @@
 17th april 2018 tuesday
 '''
 
-from lib.juit_client import WebKisok
+from lib.webkiosk import WebKiosk
 from cmds.helper import Helper
 from pathlib import Path
 import os
 from tabulate import tabulate
 
-webkiosk = WebKisok()
+webkiosk = WebKiosk()
 
 CONFIG_FILE = 'config.txt'
 
