@@ -26,20 +26,18 @@ def cmd_sgpa():
         exit()
     else:
         with open(file, 'r') as config_file:
-            username = config_file.readline()
-            user = username.strip('username:')
-            password = config_file.readline()
-            pwd = password.strip('password:')
-            if user is not None and pwd is not None:
+            uid = config_file.readline()
+            pwd = config_file.readline()
+            if uid is not None and pwd is not None:
                 args = {}
-                args['uid'] = user
+                args['uid'] = uid
                 args['pwd'] = pwd
                 cgsg = webkiosk.cgpa_sgpa(args)
                 display_sgpa(cgsg)
-            elif user is None:
+            elif uid is None:
                 os.remove(file)
                 print('acadbot: Config file does not contain username...')
                 print('acadbot: Please run the following command...')
-                Helper().help_username()
+                helper.help_username()
                 print('acadbot: Exiting...')
                 exit()
