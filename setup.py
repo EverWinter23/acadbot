@@ -7,7 +7,7 @@ setup(name='acadbot',
            description='Acadbot for JUIT to fetch attendance, timetable etc...',
            author='dev@ver',
            author_email='eternal.blizzard23@gmail.com, \
-                         kashmiri.devesh@gmail.com',
+                         kashmiridevesh@gmail.com',
            scripts = [
                 'acadbot'
            ]
