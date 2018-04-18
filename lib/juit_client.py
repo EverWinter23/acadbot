@@ -3,7 +3,8 @@
 old dominion - written in the sand
 '''
 
-import links, uplink, requests
+import lib.links as links
+import uplink, requests
 # pretty print
 import pprint
 # for testing purposes
