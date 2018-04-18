@@ -24,7 +24,7 @@ def cmd_passwd():
     with open(file, 'a') as config_file:
         passwd = getpass('acadbot: [enter password]> ')
         print('')
-        config_file.write("password:" + passwd)
+        config_file.write(passwd)
 
     print('acadbot: Configuration complete...')
 
