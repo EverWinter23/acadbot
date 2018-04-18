@@ -5,15 +5,19 @@ import urllib.request, json, datetime, pprint
 from tabulate import tabulate
 
 def url_response(batch):
-    # TODO make it configurable
     link = "https://s3.ap-south-1.amazonaws.com/juit-webkiosk/2018EVESEM/" + str(batch) + ".json"
     try:
         url = urllib.request.urlopen(link)
     except urllib.error.HTTPError as ex:
-        print('acadbot:', ex)
-        # TODO indicate internet/server issues
-        # TODO change the statement below to -> may be invalid or check again
-        print("acadbot: The batch name '" + str(batch) + "' is an invalid batch.")
+        # print('acadbot:', ex)
+        print("acadbot: The batch entered may be invalid. Please check again.")
+        print('')
+        print('acadbot: Exiting...')
+        exit()
+    except urllib.error.URLError as ex:
+        # print('acadbot: ', ex)
+        print("acadbot: There is a problem with the connectivity to the server. Please check your internet connection and try again.")
+        print("acadbot: If the problem still persists, there might be a server error.")
         print('')
         print('acadbot: Exiting...')
         exit()
