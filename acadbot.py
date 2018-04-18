@@ -10,15 +10,17 @@ from cmds.cmd_passwd import cmd_passwd
 from custom_parser import ArgParser
 from cmds.helper import Helper
 from cmds.cmd_time_table import cmd_time_table
+from cmds.cmd_attendance import cmd_attendance
+from cmds.cmd_cgpa import cmd_cgpa
 
 # commands
 CONFIG, FETCH, VERSION, HELP = 'config', 'fetch', '--version', '--help'
 USERNAME, PASSWORD = '--user', '--passwd'
-ATTENDANCE, TIME_TABLE = 'attendance', 'time-table'
+ATTENDANCE, TIME_TABLE, CGPA = 'attendance', 'time-table', 'cgpa'
 ALL = 'all'
 COMMANDS = [CONFIG, FETCH, VERSION, HELP]
 CONFIG_ARGS = [USERNAME, PASSWORD]
-FETCH_ARGS = [ATTENDANCE, TIME_TABLE]
+FETCH_ARGS = [ATTENDANCE, TIME_TABLE, CGPA]
 
 days = ['mon','tue', 'wed', 'thu', 'fri']
 
@@ -84,7 +86,7 @@ def main(args):
                 # error
                 exit()
 
-    # usage: acadbot fetch [attendance | time-table]
+    # usage: acadbot fetch [attendance | cgpa | time-table ]
     elif parser.cur_arg == FETCH:
         # fetch can have the following two args only
         #   1. attendance
@@ -107,6 +109,7 @@ def main(args):
                     cmd_time_table(batch, day)
 
                 elif parser.cur_arg is None:
+                    print("acadbot: Fetching timetable...")
                     cmd_time_table(batch)
                 else:
                     print("acadbot: '" + str(parser.cur_arg) +"' is an invalid day format...")
@@ -123,8 +126,20 @@ def main(args):
         # usage: acadbot fetch attendance
         elif parser.cur_arg == ATTENDANCE:
             parser.get_next_arg()
-            # TODO here
-            cmd_attendance()
+            if parser.cur_arg is None:
+                print("acadbot: Fetching attendance...")
+                cmd_attendance()
+            else:
+                helper.help_attendance()
+
+        # usage: acadbot fetch cgpa
+        elif parser.cur_arg == CGPA:
+            parser.get_next_arg()
+            if parser.cur_arg is None:
+                print("acadbot: Fetching cgpa...")
+                cmd_cgpa()
+            else:
+                helper.help_cgpa()
 
     # usage: acadbot --version
     elif parser.cur_arg == VERSION:
