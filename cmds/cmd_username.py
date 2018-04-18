@@ -21,7 +21,7 @@ def cmd_username(name):
     print('acadbot: Writing to config file...')
 
     with open(file, 'w') as config_file:
-        config_file.write("username:" + name + "\n")
+        config_file.write(name + "\n")
     print('acadbot: Done...')
 
 
