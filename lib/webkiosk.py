@@ -23,7 +23,6 @@ class WebKiosk:
     
     def attendance(self, args):
         query = {}
-        print("acadbot: fetching attendance...")
         query['session'] = self.login(args)
         result = self.user.get_attendance(query).json()
         return result['attendance']
