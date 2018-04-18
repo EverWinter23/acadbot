@@ -60,3 +60,13 @@ class Helper:
         t = ([['Usage:', 'acadbot fetch time-table [batch] [day <optional>]']])
         print(tabulate(t))
         print('')
+
+    def help_attendance(self):
+        t = ([['Usage:', 'acadbot fetch attendance']])
+        print(tabulate(t))
+        print('')
+
+    def help_cgpa(self):
+        t = ([['Usage:', 'acadbot fetch cgpa']])
+        print(tabulate(t))
+        print('')
