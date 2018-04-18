@@ -12,15 +12,17 @@ from cmds.helper import Helper
 from cmds.cmd_time_table import cmd_time_table
 from cmds.cmd_attendance import cmd_attendance
 from cmds.cmd_cgpa import cmd_cgpa
+from cmds.cmd_sgpa import cmd_sgpa
+from cmds.cmd_hello import cmd_hello
 
 # commands
-CONFIG, FETCH, VERSION, HELP = 'config', 'fetch', '--version', '--help'
+CONFIG, FETCH, VERSION, HELP, HELLO = 'config', 'fetch', '--version', '--help', 'hello'
 USERNAME, PASSWORD = '--user', '--passwd'
-ATTENDANCE, TIME_TABLE, CGPA = 'attendance', 'time-table', 'cgpa'
+ATTENDANCE, TIME_TABLE, CGPA, SGPA = 'attendance', 'time-table', 'cgpa', 'sgpa'
 ALL = 'all'
-COMMANDS = [CONFIG, FETCH, VERSION, HELP]
+COMMANDS = [CONFIG, FETCH, VERSION, HELP, HELLO]
 CONFIG_ARGS = [USERNAME, PASSWORD]
-FETCH_ARGS = [ATTENDANCE, TIME_TABLE, CGPA]
+FETCH_ARGS = [ATTENDANCE, TIME_TABLE, CGPA, SGPA]
 
 days = ['mon','tue', 'wed', 'thu', 'fri']
 
@@ -86,7 +88,11 @@ def main(args):
                 # error
                 exit()
 
-    # usage: acadbot fetch [attendance | cgpa | time-table ]
+    # usage: acadbot hello
+    elif parser.cur_arg == HELLO:
+        cmd_hello()
+
+    # usage: acadbot fetch [attendance | cgpa | sgpa | time-table ]
     elif parser.cur_arg == FETCH:
         # fetch can have the following two args only
         #   1. attendance
@@ -99,9 +105,10 @@ def main(args):
         if parser.cur_arg == TIME_TABLE:
             parser.get_next_arg()
             # make it work with bot x8 and X8
-            batch = parser.cur_arg.upper()
+            batch = parser.cur_arg
             if batch is not None:
                 # if day has been passed as an arg
+                batch = batch.upper()
                 parser.get_next_arg()
                 if parser.cur_arg is not None and parser.cur_arg.lower() in days:
                     day = parser.cur_arg.lower()
@@ -118,7 +125,6 @@ def main(args):
                     exit()                
             else:
                 print("acadbot: '" + str(parser.cur_arg) +"' is an invalid option...")
-                # TODO here
                 helper.help_time_table()
                 print('acadbot: Exiting...')
                 exit()
@@ -136,10 +142,19 @@ def main(args):
         elif parser.cur_arg == CGPA:
             parser.get_next_arg()
             if parser.cur_arg is None:
-                print("acadbot: Fetching cgpa...")
+                print("acadbot: Fetching CGPA...")
                 cmd_cgpa()
             else:
                 helper.help_cgpa()
+        
+        # usage: acadbot fetch sgpa
+        elif parser.cur_arg == SGPA:
+            parser.get_next_arg()
+            if parser.cur_arg is None:
+                print("acadbot: Fetching SGPA...")
+                cmd_sgpa()
+            else:
+                helper.help_sgpa()
 
     # usage: acadbot --version
     elif parser.cur_arg == VERSION:
