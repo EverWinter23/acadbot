@@ -9,6 +9,6 @@ setup(name='acadbot',
            author_email='eternal.blizzard23@gmail.com, \
                          kashmiri.devesh@gmail.com',
            scripts = [
-                'acadbot.py'
+                'acadbot'
            ]
 )
