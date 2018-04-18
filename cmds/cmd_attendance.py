@@ -11,7 +11,6 @@ from tabulate import tabulate
 webkiosk = WebKiosk()
 
 CONFIG_FILE = 'config.txt'
-
 def display_attendance(attendance):
     # removing multiple entries of same subject
     att = [dict(t) for t in set([tuple(d.items()) for d in attendance])]
@@ -19,7 +18,6 @@ def display_attendance(attendance):
     for i in range(len(att)):
         l.append([att[i]['name'], att[i]['Total']])
     print(tabulate(l,headers = ["Subject Name", "Total"]))
-
 
 def cmd_attendance():
     file = Path(CONFIG_FILE)
@@ -31,17 +29,15 @@ def cmd_attendance():
         exit()
     else:
         with open(file, 'r') as config_file:
-            username = config_file.readline()
-            user = username.strip('username:')
-            password = config_file.readline()
-            pwd = password.strip('password:')
-            if user is not None and pwd is not None:
+            uid = config_file.readline()
+            pwd = config_file.readline()
+            if uid is not None and pwd is not None:
                 args = {}
-                args['uid'] = user
+                args['uid'] = uid
                 args['pwd'] = pwd
                 attendance = webkiosk.attendance(args)
                 display_attendance(attendance)
-            elif user is None:
+            elif uid is None:
                 os.remove(file)
                 print('acadbot: Config file does not contain username...')
                 print('acadbot: Please run the following command...')
