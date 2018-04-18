@@ -3,15 +3,25 @@
 old dominion - written in the sand
 '''
 
-import links, uplink
+import links, uplink, requests
 # pretty print
 import pprint
 # for testing purposes
 from getpass import getpass
 
+def get_key_from_heroku():
+    """Gets API key from acadbot server"""
+    try:
+        return requests.get(links.HEROKU_ACADBOT_SERVER_URL).json()[links.KEY]        
+    except Exception as ex:
+        print('acadbot:', ex)
+        print('acadbot: Our server is down, pls contact @authors...')
+        exit()
+
+
 # time alloted for fetching each request is 60s
 # must provide api key for using the api
-@uplink.headers({'X-Api-Key': links.KEY})
+@uplink.headers({links.KEY: get_key_from_heroku()})
 class JuitClient(uplink.Consumer):
     @uplink.timeout(60)
     @uplink.get(links.URL_LOGIN)
