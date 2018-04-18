@@ -1,20 +1,19 @@
 '''
 18th april 2018 Wednesday
 '''
-from lib.juit_client import WebKisok
+from lib.webkiosk import WebKiosk
 from cmds.helper import Helper
 from tabulate import tabulate
 from pathlib import Path
 import os
 
-webkiosk = WebKisok()
+webkiosk = WebKiosk()
 CONFIG_FILE = 'config.txt'
 
 def display_cgpa(cgsg):
     l = []
-    for i in range(len(cgsg)):
-        l.append([str(i+1), cgsg[i]['sgpa'], cgsg[i]['cgpa']])
-    print(tabulate(l,headers = ["Semester", "SGPA", "CGPA"]))
+    l.append(['CGPA:', cgsg[len(cgsg)-1]['cgpa']])
+    print(tabulate(l))
 
 def cmd_cgpa():
     file = Path(CONFIG_FILE)
@@ -34,7 +33,7 @@ def cmd_cgpa():
                 args = {}
                 args['uid'] = user
                 args['pwd'] = pwd
-                cgsg = webkiosk.cgpa(args)
+                cgsg = webkiosk.cgpa_sgpa(args)
                 display_cgpa(cgsg)
             elif user is None:
                 os.remove(file)
