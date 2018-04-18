@@ -34,7 +34,9 @@ class Helper:
         print('')
 
     def help_fetch(self):
-        t = (['Usage:', 'acadbot fetch [attendance]'],
+        t =(['Usage:', 'acadbot fetch [attendance]'],
+            ['Usage:', 'acadbot fetch [cgpa]'],
+            ['Usage:', 'acadbot fetch [sgpa]'],
             ['Usage:', 'acadbot fetch [time-table]'])
         print(tabulate(t))
         print('')
@@ -68,5 +70,10 @@ class Helper:
 
     def help_cgpa(self):
         t = ([['Usage:', 'acadbot fetch cgpa']])
+        print(tabulate(t))
+        print('')
+
+    def help_sgpa(self):
+        t = ([['Usage:', 'acadbot fetch sgpa']])
         print(tabulate(t))
         print('')
