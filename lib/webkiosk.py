@@ -5,8 +5,7 @@
 from lib.juit_client import JuitClient
 import lib.links as links
 
-class WebKiosk:
-        
+class WebKiosk:        
     def __init__(self):
         self.user = JuitClient(links.URL_BASE)
 
@@ -18,7 +17,8 @@ class WebKiosk:
             session_key = result['loginCookies']
             return session_key
         else:
-            print("acadbot: could not estd. session...")
+            print('acadbot:', result['response'])
+            print("acadbot: Could not estd. session...")
             exit()
     
     def attendance(self, args):
