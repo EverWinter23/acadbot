@@ -24,7 +24,17 @@ To install **acadbot** on your system, just run the following commands **one by 
     $ pip3 install -e .
 
 
-**[WARNING] Don't delete the acadbot direcotry, after installation.**
+**[WARNING] Don't delete the acadbot directory, after installation.**
+
+# USING acadbot
+If your're running acadbot for the very first time, you will need to configure it first using:
+
+    $ acadbot config --user <roll number here>
+    $ acadbot config --passwd<enter>
+    # It will display a prompt, asking for your password.
+
+After you're done with the configuration part, you're ready to use it as in the asciinema above(the **gif** image).
+
 
 # AUTHORS
 * Rishabh Mehta <eternal.blizzard23@gmail.com>
