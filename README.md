@@ -1,5 +1,5 @@
 # ABOUT
-**Specially for LINUX and MAC users**
+**For linux and mac users, not for windows :P**
 
 **acabot** is a **command line interface** that provides a unified interface for using WebKiosk with a single configuration file. You can use acadbot from within your favorite terminal to meet all your WebKiosk needs.
 
