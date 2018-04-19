@@ -17,12 +17,14 @@ To install the **dependencies** for acadbot, run the following command.
 # INSTALLATION
 To install **acadbot** on your system, just run the following commands **one by one**.
 
-    # Please don't delete the acadbot direcotry, after installation.
     $ cd <navigate to the location where you want to install acadbot>
     $ git clone https://github.com/boddah31/acadbot
     $ cd acadbot
     # Installs acadbot from the given path.
     $ pip3 install -e .
+
+
+**[WARNING] Don't delete the acadbot direcotry, after installation.**
 
 # AUTHORS
 * Rishabh Mehta <eternal.blizzard23@gmail.com>
