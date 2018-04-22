@@ -7,8 +7,12 @@ from tabulate import tabulate
 from pathlib import Path
 import os
 
-webkiosk = WebKiosk()
 CONFIG_FILE = 'config.txt'
+HOME = str(Path.home())
+DIR_PATH = HOME + "/" + '.local/share/acadbot'
+FILE_PATH = DIR_PATH + "/" + CONFIG_FILE
+
+webkiosk = WebKiosk()
 
 def display_sgpa(cgsg):
     l = []
@@ -17,7 +21,7 @@ def display_sgpa(cgsg):
     print(tabulate(l, headers=['Semester', 'SGPA']))
 
 def cmd_sgpa():
-    file = Path(CONFIG_FILE)
+    file = Path(FILE_PATH)
     if not file.exists():
         print('acadbot: Config file does not exist...')
         print('acadbot: Please run the following command first...')

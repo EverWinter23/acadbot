@@ -10,7 +10,12 @@ from tabulate import tabulate
 
 webkiosk = WebKiosk()
 
+
 CONFIG_FILE = 'config.txt'
+HOME = str(Path.home())
+DIR_PATH = HOME + "/" + '.local/share/acadbot'
+FILE_PATH = DIR_PATH + "/" + CONFIG_FILE
+
 def display_attendance(attendance):
     # removing multiple entries of same subject
     att = [dict(t) for t in set([tuple(d.items()) for d in attendance])]
@@ -20,7 +25,7 @@ def display_attendance(attendance):
     print(tabulate(l,headers = ["Subject Name", "Total"]))
 
 def cmd_attendance():
-    file = Path(CONFIG_FILE)
+    file = Path(FILE_PATH)
     if not file.exists():
         print('acadbot: Config file does not exist...')
         print('acadbot: Please run the following command first...')

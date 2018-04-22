@@ -5,10 +5,14 @@ time 3:42am
 from pathlib import Path
 from getpass import getpass
 from cmds.helper import Helper
+
 CONFIG_FILE = 'config.txt'
+HOME = str(Path.home())
+DIR_PATH = HOME + "/" + '.local/share/acadbot'
+FILE_PATH = DIR_PATH + "/" + CONFIG_FILE
 
 def cmd_passwd():
-    file = Path(CONFIG_FILE)
+    file = Path(FILE_PATH)
     if not file.exists():
         print('acadbot: Config file does not exist...')
         print('acadbot: Please run the following command first...')
