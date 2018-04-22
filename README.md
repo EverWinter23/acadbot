@@ -12,16 +12,18 @@ Sneak Peak...
 # DEPENDENCIES
 To install the **dependencies** for acadbot, run the following command.
 
-    $ pip3 install -r requirements.txt
+    $ sudo pip3 install -r requirements.txt
 
 # INSTALLATION
+
+## [WARNING] The last command contains a '.' at the end.
 To install **acadbot** on your system, just run the following commands **one by one**.
 
     $ cd <navigate to the location where you want to install acadbot>
     $ git clone https://github.com/boddah31/acadbot
     $ cd acadbot
     # Installs acadbot from the given path.
-    $ pip3 install -e .
+    $ sudo pip3 install -e .
 
 
 **[WARNING] Don't delete the acadbot directory, after installation.**
