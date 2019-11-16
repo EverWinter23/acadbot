@@ -3,7 +3,7 @@
 
 **acabot** is a **command line interface** that provides a unified interface for using WebKiosk with a single configuration file. You can use acadbot from within your favorite terminal to meet all your WebKiosk needs.
 
-Sneak Peak...
+Sneak Peek...
 <p align="center">
   <img src="/asciinema/acadbot.svg?sanitize=true" alt="acadbot in work"/>
 </p>
