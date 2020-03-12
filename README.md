@@ -1,5 +1,5 @@
 ## ABOUT
-**For linux and mac users, not for windows :P**
+**For linux and mac users, windows not supported**
 
 **acabot** is a **command line interface** that provides a unified interface for using WebKiosk with a single configuration file. You can use acadbot from within your favorite terminal to meet all your WebKiosk needs.
 
@@ -24,9 +24,6 @@ To install **acadbot** on your system, just run the following commands **one by 
     $ cd acadbot
     # Installs acadbot from the given path.
     $ sudo pip3 install -e .
-
-
-**[WARNING] Don't delete the acadbot directory, after installation.**
 
 ### USING acadbot
 If your're running acadbot for the very first time, you will need to configure it first using:
